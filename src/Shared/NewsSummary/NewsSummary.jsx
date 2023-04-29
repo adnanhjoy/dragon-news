@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const NewsSummary = ({ news }) => {
     const { _id, title, details, image_url, total_view, author, rating } = news;
-    console.log(news)
     return (
         <Card className='mb-4'>
             <Card.Header className='d-flex justify-content-between align-items-center'>
@@ -25,7 +24,7 @@ const NewsSummary = ({ news }) => {
                 <Card.Title>{title}</Card.Title>
                 <Card.Img variant="top" src={image_url} />
                 <Card.Text>
-                    {details.length > 250 ? <p>{details.slice(0, 250) + '...'} <Link to={`news/${_id}`}>Read More</Link></p> : details}
+                    {details.length > 250 ? <p>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Read More</Link></p> : details}
                 </Card.Text>
             </Card.Body>
             <Card.Footer className="d-flex justify-content-between align-items-center">
