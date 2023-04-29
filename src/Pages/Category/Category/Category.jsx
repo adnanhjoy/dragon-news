@@ -6,7 +6,7 @@ const Category = () => {
     console.log(newses)
     return (
         <div>
-            <h1>This is Category</h1>
+            <h1>This is Category {newses.length}</h1>
         </div>
     );
 };
