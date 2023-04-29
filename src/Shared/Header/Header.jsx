@@ -9,7 +9,14 @@ import { AuthContext } from '../../context/AuthProvider';
 import { Image } from 'react-bootstrap';
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.error(error))
+    }
+
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -35,12 +42,12 @@ const Header = () => {
                         <Nav>
                             <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
-                                <Image roundedCircle style={{height: '30px'}} src={user?.photoURL}></Image>
+                                <Image roundedCircle style={{ height: '30px' }} src={user?.photoURL}></Image>
                             </Nav.Link>
                             <Nav.Link>
                                 {
-                                    user.uid ? <Nav.Link className='p-0'>Log Out</Nav.Link>
-                                    : <Nav.Link className='p-0'>Sign In</Nav.Link>
+                                    user?.uid ? <Nav.Link onClick={handleLogOut} className='p-0'>Log Out</Nav.Link>
+                                        : <Nav.Link className='p-0'>Sign In</Nav.Link>
                                 }
                             </Nav.Link>
                         </Nav>
