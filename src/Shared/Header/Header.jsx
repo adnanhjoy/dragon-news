@@ -21,7 +21,7 @@ const Header = () => {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
-                    <Navbar.Brand><Link to='/'>Dragon News</Link></Navbar.Brand>
+                    <Navbar.Brand><Link className='text-decoration-none' to='/'>Dragon News</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
@@ -39,21 +39,22 @@ const Header = () => {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
+                        <div className='d-lg-none'>
+                            <LeftSideNav></LeftSideNav>
+                        </div>
                         <Nav>
-                            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
-                            <Nav.Link eventKey={2} href="#memes">
-                                <Image roundedCircle style={{ height: '30px' }} src={user?.photoURL}></Image>
+                            <Nav.Link>{user?.displayName}</Nav.Link>
+                            <Nav.Link>
+                                <Image roundedCircle style={{ height: '30px', width: '30px' }} src={user?.photoURL}></Image>
                             </Nav.Link>
                             <Nav.Link>
                                 {
                                     user?.uid ? <Nav.Link onClick={handleLogOut} className='p-0'>Log Out</Nav.Link>
-                                        : <Nav.Link className='p-0'>Sign In</Nav.Link>
+                                        : <Nav.Link  className='p-0'><Link className='text-decoration-none' to='/sign-in'>Sign In</Link></Nav.Link>
                                 }
                             </Nav.Link>
                         </Nav>
-                        <div className='d-lg-none'>
-                            <LeftSideNav></LeftSideNav>
-                        </div>
+                        
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

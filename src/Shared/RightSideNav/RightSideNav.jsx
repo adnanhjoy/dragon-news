@@ -22,11 +22,11 @@ const RightSideNav = () => {
     
     return (
         <div>
-            <ButtonGroup vertical>
-                <Button onClick={handleSubmitGoogle} variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
-                <Button variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
+            <ButtonGroup className='w-100 gap-2' vertical>
+                <Button className='rounded' onClick={handleSubmitGoogle} variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
+                <Button className='rounded' variant="outline-dark"><FaGithub></FaGithub> Login with Github</Button>
             </ButtonGroup>
-            <h4>Find us on</h4>
+            <h4 className='mt-4'>Find us on</h4>
             <ListGroup>
                 <ListGroup.Item className='mb-2 border border-dark rounded'><FaFacebook /> Facebook</ListGroup.Item>
                 <ListGroup.Item className='mb-2 border border-dark rounded'><FaTwitter /> Twitter</ListGroup.Item>
