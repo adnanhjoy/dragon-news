@@ -6,7 +6,9 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
     const [error, setError] = useState('');
+    const [accept, setAccept] = useState(false);
     const { createUser, updateUserProfile } = useContext(AuthContext);
+
 
     const handleSubmitSignUp = event => {
         event.preventDefault();
@@ -40,6 +42,10 @@ const SignUp = () => {
             })
     }
 
+    const handleChecked = event => {
+        setAccept(event.target.checked)
+    }
+
     return (
         <div>
             <h2 className='text-center my-5'>Sign Up</h2>
@@ -70,7 +76,10 @@ const SignUp = () => {
                         {error}
                     </Form.Text>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check onClick={handleChecked} type="checkbox" label={<>Accept <Link to='/terms-condition'>Terms & Condition</Link></>} />
+                </Form.Group>
+                <Button disabled={!accept} variant="primary" type="submit">
                     Sign Up
                 </Button>
             </Form>

@@ -6,6 +6,7 @@ import News from "../../Pages/News/News/News";
 import SignIn from "../../Pages/SignIn/SignIn";
 import SignUp from "../../Pages/SignUP/SignUp";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import TermsCondition from "../../Others/TermsCondition/TermsCondition";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: '/sign-up',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/terms-condition',
+                element: <TermsCondition></TermsCondition>
             }
         ]
     }
