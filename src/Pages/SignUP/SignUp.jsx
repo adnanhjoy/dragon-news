@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
+    const [error, setError] = useState('');
     const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSubmitSignUp = event => {
@@ -20,16 +21,23 @@ const SignUp = () => {
             .then(result => {
                 result.user;
                 updateProfile(name, photourl);
+                setError('');
                 form.reset();
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error);
+                setError(error.message);
+            })
 
     }
 
     const updateProfile = (name, photourl) => {
         updateUserProfile(name, photourl)
-        .then(() => {})
-        .catch(error => console.error(error))
+            .then(() => { })
+            .catch(error => {
+                console.error(error);
+                setError(error.message);
+            })
     }
 
     return (
@@ -55,6 +63,11 @@ const SignUp = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Text className="text-muted">
                         Allready have an account ? <Link to='/sign-in'>Sign In</Link>
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicError">
+                    <Form.Text className="text-danger">
+                        {error}
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">

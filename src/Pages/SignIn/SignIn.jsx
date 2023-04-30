@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import { useState } from 'react';
 
 const SignIn = () => {
+    const [error, setError] = useState('');
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmitSignIn = event => {
         event.preventDefault();
@@ -18,11 +21,16 @@ const SignIn = () => {
             .then(result => {
                 console.log(result.user);
                 form.reset();
+                setError('');
+                navigate('/')
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error);
+                setError(error.message);
+            })
     }
 
-    
+
 
     return (
         <div>
@@ -38,9 +46,14 @@ const SignIn = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name='password' type="password" placeholder="Password" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Group className="mb-3" controlId="formBasicSignin">
                     <Form.Text className="text-muted">
                         Don't have an account ? <Link to='/sign-up'>Sign Up</Link>
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicError">
+                    <Form.Text className="text-danger">
+                        {error}
                     </Form.Text>
                 </Form.Group>
                 <Button variant="primary" type="submit">

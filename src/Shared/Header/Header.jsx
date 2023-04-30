@@ -7,14 +7,15 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { Image } from 'react-bootstrap';
+import { FaUserAlt } from "react-icons/fa";
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
 
     const handleLogOut = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.error(error))
+            .then(() => { })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -45,16 +46,21 @@ const Header = () => {
                         <Nav>
                             <Nav.Link>{user?.displayName}</Nav.Link>
                             <Nav.Link>
-                                <Image roundedCircle style={{ height: '30px', width: '30px' }} src={user?.photoURL}></Image>
+                                {
+                                    user?.uid ?
+                                    <Image roundedCircle style={{ height: '30px', width: '30px' }} src={user?.photoURL}></Image>
+                                    :
+                                    <FaUserAlt/>
+                                }
                             </Nav.Link>
                             <Nav.Link>
                                 {
                                     user?.uid ? <Nav.Link onClick={handleLogOut} className='p-0'>Log Out</Nav.Link>
-                                        : <Nav.Link  className='p-0'><Link className='text-decoration-none' to='/sign-in'>Sign In</Link></Nav.Link>
+                                        : <Nav.Link className='p-0'><Link className='text-decoration-none' to='/sign-in'>Sign In</Link></Nav.Link>
                                 }
                             </Nav.Link>
                         </Nav>
-                        
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
