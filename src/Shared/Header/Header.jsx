@@ -53,12 +53,12 @@ const Header = () => {
                                     <FaUserAlt/>
                                 }
                             </Nav.Link>
-                            <Nav.Link>
+                            <Nav className='align-items-center'>
                                 {
-                                    user?.uid ? <Nav.Link onClick={handleLogOut} className='p-0'>Log Out</Nav.Link>
-                                        : <Nav.Link className='p-0'><Link className='text-decoration-none' to='/sign-in'>Sign In</Link></Nav.Link>
+                                    user?.uid ? <Link  onClick={handleLogOut} className='text-decoration-none p-2'>Log Out</Link>
+                                        : <Link className='text-decoration-none p-2' to='/sign-in'>Sign In</Link>
                                 }
-                            </Nav.Link>
+                            </Nav>
                         </Nav>
 
                     </Navbar.Collapse>
