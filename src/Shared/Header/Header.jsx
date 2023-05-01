@@ -43,19 +43,19 @@ const Header = () => {
                         <div className='d-lg-none'>
                             <LeftSideNav></LeftSideNav>
                         </div>
-                        <Nav>
+                        <Nav className='align-items-center'>
                             <Nav.Link>{user?.displayName}</Nav.Link>
-                            <Nav.Link>
+                            <Link to='/profile'>
                                 {
                                     user?.uid ?
-                                    <Image roundedCircle style={{ height: '30px', width: '30px' }} src={user?.photoURL}></Image>
-                                    :
-                                    <FaUserAlt/>
+                                        <Image roundedCircle style={{ height: '30px', width: '30px' }} src={user?.photoURL}></Image>
+                                        :
+                                        <FaUserAlt />
                                 }
-                            </Nav.Link>
+                            </Link>
                             <Nav className='align-items-center'>
                                 {
-                                    user?.uid ? <Link  onClick={handleLogOut} className='text-decoration-none p-2'>Log Out</Link>
+                                    user?.uid ? <Link onClick={handleLogOut} className='text-decoration-none p-2'>Log Out</Link>
                                         : <Link className='text-decoration-none p-2' to='/sign-in'>Sign In</Link>
                                 }
                             </Nav>
